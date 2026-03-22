@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Playpen+Sans+Deva:wght@100..800&family=Underdog&display=swap');
+
+.hero-section {
+  background-image: url('/assets/bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+.hero-section > * {
+  position: relative;
+  z-index: 2;
+}
+
+.font-heading {
+  font-family: 'Playpen Sans Deva', cursive;
+}
+
+.font-body {
+  font-family: 'Underdog', cursive;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-section h3 {
+  animation: fadeInUp 1s ease-out forwards;
+  animation-delay: 0.5s;
+  opacity: 0;
+}
+
+.hero-section p {
+  animation: fadeInUp 1.2s ease-out forwards;
+  animation-delay: 1s;
+  opacity: 0;
+}

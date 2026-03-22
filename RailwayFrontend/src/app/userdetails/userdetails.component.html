@@ -1,0 +1,106 @@
+<app-header></app-header>
+<div class="page-wrapper">
+  <div class="d-flex">
+    <app-usersidebar></app-usersidebar>
+    <div class="container mt-4">
+    <div class="card">
+      <div class="card-header">
+        <h4>User Details</h4>
+      </div>
+      <div class="card-body">
+        <div *ngIf="loading" class="text-center">
+          <div class="spinner-border" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        </div>
+
+        <div *ngIf="error" class="alert alert-danger">
+          {{ error }}
+        </div>
+
+        <div *ngIf="user && !loading" class="row">
+          <div class="col-md-6">
+            <p><strong>User ID:</strong> {{ user.userId }}</p>
+            <p><strong>Name:</strong> {{ user.name }}</p>
+            <p><strong>Username:</strong> {{ user.userName }}</p>
+            <p><strong>Email:</strong> {{ user.email }}</p>
+          </div>
+          <div class="col-md-6">
+            <p><strong>Gender:</strong> {{ user.gender }}</p>
+            <p><strong>Age:</strong> {{ user.age }}</p>
+            <p><strong>Phone:</strong> {{ user.phone }}</p>
+            <p><strong>Address:</strong> {{ user.address }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="mt-4">
+      <div class="card">
+        <div class="card-header">
+          <h4><i class="bi bi-search"></i> Search Trains</h4>
+        </div>
+        <div class="card-body">
+          <div class="row mb-3">
+            <div class="col-md-4">
+              <label class="form-label">Source</label>
+              <input type="text" class="form-control" [(ngModel)]="source" name="source" />
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">Destination</label>
+              <input type="text" class="form-control" [(ngModel)]="destination" name="destination" />
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">Travel Date</label>
+              <input type="date" class="form-control" [(ngModel)]="travelDate" name="travelDate" [min]="getCurrentDate()" />
+            </div>
+          </div>
+          <button class="btn btn-secondary mb-3" (click)="searchTrains()">
+            <i class="bi bi-search"></i> Search
+          </button>
+          <div *ngIf="searched && trains.length === 0" class="alert alert-warning">
+            No trains found for the selected route and date.
+          </div>
+          <div *ngIf="trains.length > 0">
+            <div *ngFor="let train of trains" class="card mb-3">
+              <div class="card-header">
+                <strong>{{ train.trainName }}</strong> (ID: {{ train.trainId }})
+              </div>
+              <div class="card-body">
+                <p><strong>From:</strong> {{ train.sourceStation }} <strong>To:</strong> {{ train.destinationStation }}</p>
+                <p><strong>Departure:</strong> {{ train.departureTime | date:'short' }}</p>
+                <h6>Available Classes</h6>
+                <div class="table-responsive">
+                  <table class="table table-sm table-bordered">
+                    <thead class="table-light">
+                      <tr>
+                        <th>Class</th>
+                        <th>Fare</th>
+                        <th>Available Seats</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let cls of train.classes">
+                        <td>{{ cls.name }}</td>
+                        <td>₹{{ cls.fare }}</td>
+                        <td>{{ cls.availableSeats }}</td>
+                        <td>
+                          <button class="btn btn-success btn-sm" (click)="bookTrainWithClass(train, cls)">
+                            <i class="bi bi-ticket"></i> Book
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  </div>
+</div>
+

@@ -1,0 +1,25 @@
+footer {
+  margin-top: auto;
+  padding: 0px;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}
+
+.transparent-footer {
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  color: white !important;
+}
+
+.transparent-footer h5,
+.transparent-footer p,
+.transparent-footer a {
+  color: white !important;
+}
+
+a:hover {
+  color: #f8f9fa !important;
+}

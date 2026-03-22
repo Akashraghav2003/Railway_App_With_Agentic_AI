@@ -1,0 +1,38 @@
+<app-header></app-header>
+<div class="page-wrapper">
+  <div class="d-flex">
+    <app-adminsidebar></app-adminsidebar>
+    <div class="container mt-4">
+    <h2 class="mb-4 text-danger animated-title">
+      <i class="bi bi-x-circle"></i> Cancel Train
+    </h2>
+
+    <div class="card shadow-lg border-0">
+      <div class="card-header bg-gradient-danger text-white">
+        <h5 class="mb-0"><i class="bi bi-exclamation-triangle"></i> Cancel Train</h5>
+      </div>
+      <div class="card-body p-4">
+        <div class="mb-4">
+          <label class="form-label fw-bold">Train ID:</label>
+          <input type="number" class="form-control form-control-lg" [(ngModel)]="trainId" placeholder="Enter Train ID to cancel" />
+        </div>
+        
+        <button class="btn btn-danger btn-lg px-4" (click)="cancelTrain()" [disabled]="!trainId">
+          <i class="bi bi-trash"></i> Cancel Train
+        </button>
+      </div>
+    </div>
+
+    <div *ngIf="message" class="alert mt-4 alert-animated" [ngClass]="{
+      'alert-success': success,
+      'alert-danger': !success
+    }">
+      <i class="bi" [ngClass]="{
+        'bi-check-circle': success,
+        'bi-x-circle': !success
+      }"></i>
+      {{ message }}
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

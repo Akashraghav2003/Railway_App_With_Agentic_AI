@@ -1,0 +1,97 @@
+<app-header></app-header>
+<div class="page-wrapper">
+  <div class="d-flex">    
+      <app-adminsidebar></app-adminsidebar>
+      <div>
+        <h2 class="mb-4 text-primary">
+            <i class="bi bi-train-front-fill"></i> Add Train
+        </h2>
+    
+        <form [formGroup]="trainForm" (ngSubmit)="onSubmit()" class="p-4 border rounded bg-white shadow-sm">
+            <!-- Train Info -->
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label class="form-label">Train Name:</label>
+                    <input class="form-control" formControlName="trainName" placeholder="Enter train name" />
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Total Seats:</label>
+                    <input type="number" class="form-control" formControlName="totalSeats" placeholder="e.g. 500" />
+                </div>
+            </div>
+    
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label class="form-label">Source Station:</label>
+                    <input class="form-control" formControlName="sourceStation" placeholder="e.g. Delhi" />
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Destination Station:</label>
+                    <input class="form-control" formControlName="destinationStation" placeholder="e.g. Mumbai" />
+                </div>
+            </div>
+    
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label class="form-label">Departure Time:</label>
+                    <input type="datetime-local" class="form-control" formControlName="departureTime" />
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Arrival Time:</label>
+                    <input type="datetime-local" class="form-control" formControlName="arrivalTime" />
+                </div>
+            </div>
+    
+            <!-- Train Classes -->
+            <hr class="my-4" />
+            <h5 class="text-secondary">
+                <i class="bi bi-list-ul"></i> Train Classes
+            </h5>
+    
+            <div formArrayName="trainClass" class="mb-3">
+                <div *ngFor="let classGroup of trainClass.controls; let i = index" [formGroupName]="i"
+                    class="border p-3 mb-3 rounded bg-light">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label class="form-label">Class Name:</label>
+                            <input class="form-control" formControlName="className" placeholder="e.g. Sleeper" />
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Total Seats:</label>
+                            <input type="number" class="form-control" formControlName="totalSeat" />
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label">Fare:</label>
+                            <input type="number" class="form-control" formControlName="fare" />
+                        </div>
+                        <div class="col-md-1 d-flex align-items-end">
+                            <button type="button" class="btn btn-outline-danger btn-sm" (click)="removeTrainClass(i)">
+                                <i class="bi bi-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Add Class Button -->
+            <div class="mb-4">
+                <button type="button" class="btn btn-outline-secondary" (click)="addTrainClass()">
+                    <i class="bi bi-plus-circle"></i> Add Class
+                </button>
+            </div>
+    
+            <!-- Submit Button -->
+            <div class="text-end">
+                <button type="submit" class="btn btn-primary px-4">
+                    <i class="bi bi-check-circle"></i> Submit
+                </button>
+            </div>
+        </form>
+    
+        <!-- Success Message -->
+        <p class="mt-3 text-success fw-semibold">{{ message }}</p>
+    
+      </div>
+  </div>
+  <app-footer></app-footer>
+</div>

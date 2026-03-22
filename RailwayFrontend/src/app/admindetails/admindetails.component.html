@@ -1,0 +1,90 @@
+<app-header></app-header>
+<div class="page-wrapper">
+  <div class="d-flex">
+    <app-adminsidebar></app-adminsidebar>
+    <div class="container mt-4">
+      <div class="card">
+        <div class="card-header bg-warning text-dark">
+          <h5 class="mb-0">Admin Details</h5>
+        </div>
+        <div class="card-body">
+          <div *ngIf="loading" class="text-center">
+            <div class="spinner-border spinner-border-sm" role="status"></div>
+          </div>
+
+          <div *ngIf="error" class="alert alert-danger alert-sm">
+            {{ error }}
+          </div>
+
+          <div *ngIf="user && !loading" class="row">
+            <div class="col-md-6">
+              <p class="mb-1"><strong>ID:</strong> {{ user.userId }}</p>
+              <p class="mb-1"><strong>Name:</strong> {{ user.name }}</p>
+              <p class="mb-1"><strong>Username:</strong> {{ user.userName }}</p>
+            </div>
+            <div class="col-md-6">
+              <p class="mb-1"><strong>Email:</strong> {{ user.email }}</p>
+              <p class="mb-1"><strong>Role:</strong> {{ user.role }}</p>
+              <p class="mb-1"><strong>Phone:</strong> {{ user.phone }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+    
+    <div class="mt-4">
+      <div class="card shadow">
+        <div class="card-header bg-primary text-white">
+          <h4 class="mb-0"><i class="bi bi-train-front"></i> All Trains</h4>
+        </div>
+        <div class="card-body">
+          <div *ngIf="loading" class="text-center">
+            <div class="spinner-border" role="status"></div>
+          </div>
+          
+          <div *ngIf="trains.length === 0 && !loading" class="alert alert-info">
+            No trains found.
+          </div>
+          
+          <div class="table-responsive" *ngIf="trains.length > 0" style="max-height: 400px; overflow-y: auto;">
+            <table class="table table-hover table-bordered table-sm">
+              <thead class="table-dark sticky-top">
+                <tr>
+                  <th style="width: 8%;">ID</th>
+                  <th style="width: 20%;">Name</th>
+                  <th style="width: 15%;">Source</th>
+                  <th style="width: 15%;">Destination</th>
+                  <th style="width: 12%;">Departure</th>
+                  <th style="width: 12%;">Arrival</th>
+                  <th style="width: 8%;">Seats</th>
+                  <th style="width: 10%;">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let train of trains">
+                  <td>{{ train.trainID }}</td>
+                  <td>{{ train.trainName }}</td>
+                  <td>{{ train.sourceStation }}</td>
+                  <td>{{ train.destinationStation }}</td>
+                  <td>{{ train.departureTime | date:'short' }}</td>
+                  <td>{{ train.arrivalTime | date:'short' }}</td>
+                  <td>{{ train.totalSeats }}</td>
+                  <td>
+                    <button class="btn btn-warning btn-sm me-1" (click)="updateTrain(train)" title="Update">
+                      <i class="bi bi-pencil"></i>
+                    </button>
+                    <button class="btn btn-danger btn-sm" (click)="cancelTrain(train)" title="Cancel">
+                      <i class="bi bi-x-circle"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+  <app-footer></app-footer>
+</div>

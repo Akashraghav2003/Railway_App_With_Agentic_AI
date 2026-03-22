@@ -1,0 +1,59 @@
+<!-- AI Chat Icon -->
+<div class="chat-icon" (click)="toggleChat()" *ngIf="!isOpen">
+  <div class="animated-bot">
+    <div class="bot-head">
+      <div class="bot-eyes">
+        <div class="eye left-eye"></div>
+        <div class="eye right-eye"></div>
+      </div>
+      <div class="bot-mouth"></div>
+    </div>
+    <div class="bot-body"></div>
+  </div>
+</div>
+
+<!-- Chat Modal -->
+<div class="chat-modal" *ngIf="isOpen">
+  <div class="chat-header">
+    <h5><i class="bi bi-robot me-2"></i>Railway AI Assistant</h5>
+    <div class="header-actions">
+      <button class="btn btn-sm btn-outline-danger me-2" 
+              (click)="deleteCurrentChat()" 
+              title="Delete Chat">
+        <i class="bi bi-trash"></i>
+      </button>
+      <button class="btn-close" (click)="toggleChat()">×</button>
+    </div>
+  </div>
+  
+  <div class="chat-body">
+    <div class="message" *ngFor="let message of messages" 
+         [ngClass]="{'user-message': message.isUser, 'bot-message': !message.isUser}">
+      <div class="message-content" [innerHTML]="formatMessageForDisplay(message.content)"></div>
+    </div>
+    <div *ngIf="isLoading" class="bot-message">
+      <div class="message-content typing">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </div>
+  
+  <div class="chat-footer">
+    <div class="input-group">
+      <input type="text" 
+             class="form-control" 
+             [(ngModel)]="currentMessage"
+             (keypress)="onKeyPress($event)"
+             placeholder="Type your message..."
+             [disabled]="isLoading">
+      <button class="btn btn-primary" 
+              (click)="sendMessage()" 
+              [disabled]="!currentMessage.trim() || isLoading">
+        <i class="bi bi-send"></i>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Backdrop -->
+<div class="chat-backdrop" *ngIf="isOpen" (click)="toggleChat()"></div>

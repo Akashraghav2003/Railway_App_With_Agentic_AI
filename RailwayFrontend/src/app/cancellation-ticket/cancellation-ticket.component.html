@@ -1,0 +1,27 @@
+
+<app-header></app-header>
+<div class="page-wrapper">
+  <div class="sidebar-container">
+      <app-usersidebar></app-usersidebar>
+      <div class="form-container" [@fadeSlide]="animationState">
+        <h2>Cancel Reservation</h2>
+        <form (ngSubmit)="cancelReservation()">
+          <label for="pnr">PNR Number</label>
+          <input id="pnr" type="text" [(ngModel)]="pnrNumber" name="pnrNumber" required />
+      
+          <label for="reason">Reason</label>
+          <input id="reason" type="text" [(ngModel)]="reason" name="reason" required />
+      
+          <label for="reservationId">Reservation ID</label>
+          <input id="reservationId" type="text" [(ngModel)]="reservationId" name="reservationId" required />
+      
+          <button type="submit">Submit Cancellation</button>
+        </form>
+      
+        <div class="response" *ngIf="responseMessage">
+          {{ responseMessage }}
+        </div>
+      </div>
+  </div>
+</div>
+<app-footer></app-footer>

@@ -1,0 +1,112 @@
+<!-- Wrapper with background image -->
+<app-navigationbar></app-navigationbar>
+
+<div class="background-wrapper">
+  <img src="/assets/bg.jpg" alt="Background" class="background-image" />
+
+  <!-- Main container -->
+  <div class="container">
+    <div class="card">
+      <h4 class="title">Create Your Account</h4>
+
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <div class="form-row">
+          <!-- Left Column -->
+          <div class="column">
+            <div class="form-group">
+              <label>Name</label>
+              <input formControlName="name" type="text" placeholder="Enter your name"
+                     [ngClass]="{'invalid': registerForm.get('name')?.touched && registerForm.get('name')?.invalid}" />
+              <div *ngIf="registerForm.get('name')?.touched && registerForm.get('name')?.invalid" class="error">
+                {{ getErrorMessage('name') }}
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Gender</label>
+              <select formControlName="gender"
+                      [ngClass]="{'invalid': registerForm.get('gender')?.touched && registerForm.get('gender')?.invalid}">
+                <option value="">Select gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+              </select>
+              <div *ngIf="registerForm.get('gender')?.touched && registerForm.get('gender')?.invalid" class="error">
+                {{ getErrorMessage('gender') }}
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Age</label>
+              <input formControlName="age" type="number" placeholder="Enter your age"
+                     [ngClass]="{'invalid': registerForm.get('age')?.touched && registerForm.get('age')?.invalid}" />
+              <div *ngIf="registerForm.get('age')?.touched && registerForm.get('age')?.invalid" class="error">
+                {{ getErrorMessage('age') }}
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Address</label>
+              <input formControlName="address" type="text" placeholder="Enter your address"
+                     [ngClass]="{'invalid': registerForm.get('address')?.touched && registerForm.get('address')?.invalid}" />
+              <div *ngIf="registerForm.get('address')?.touched && registerForm.get('address')?.invalid" class="error">
+                {{ getErrorMessage('address') }}
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column -->
+          <div class="column">
+            <div class="form-group">
+              <label>Email</label>
+              <input formControlName="email" type="email" placeholder="Enter your email"
+                     [ngClass]="{'invalid': registerForm.get('email')?.touched && registerForm.get('email')?.invalid}" />
+              <div *ngIf="registerForm.get('email')?.touched && registerForm.get('email')?.invalid" class="error">
+                {{ getErrorMessage('email') }}
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Phone</label>
+              <input formControlName="phone" type="tel" placeholder="Enter your phone number"
+                     [ngClass]="{'invalid': registerForm.get('phone')?.touched && registerForm.get('phone')?.invalid}" />
+              <div *ngIf="registerForm.get('phone')?.touched && registerForm.get('phone')?.invalid" class="error">
+                {{ getErrorMessage('phone') }}
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Username</label>
+              <input formControlName="userName" type="text" placeholder="Choose a username"
+                     [ngClass]="{'invalid': registerForm.get('userName')?.touched && registerForm.get('userName')?.invalid}" />
+              <div *ngIf="registerForm.get('userName')?.touched && registerForm.get('userName')?.invalid" class="error">
+                {{ getErrorMessage('userName') }}
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Password</label>
+              <input formControlName="password" type="password" placeholder="Create a password"
+                     [ngClass]="{'invalid': registerForm.get('password')?.touched && registerForm.get('password')?.invalid}" />
+              <div *ngIf="registerForm.get('password')?.touched && registerForm.get('password')?.invalid" class="error">
+                {{ getErrorMessage('password') }}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <button type="submit" class="submit-btn">Register</button>
+      </form>
+
+      <div *ngIf="responseMessage" class="response" [ngClass]="{'success': registerSuccess, 'error': !registerSuccess}">
+        {{ responseMessage }}
+      </div>
+
+      <div class="login-link">
+        <p>Already have an account? <a routerLink="/login">Login here</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

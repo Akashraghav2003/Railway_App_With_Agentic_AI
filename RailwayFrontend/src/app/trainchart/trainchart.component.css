@@ -1,0 +1,98 @@
+.page-wrapper {
+  background-image: url('/assets/bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  min-height: 100vh;
+  position: relative;
+  padding-top: 80px;
+  display: flex;
+  flex-direction: column;
+}
+
+.page-wrapper::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 1;
+}
+
+.page-wrapper > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* Container styling */
+.container {
+  padding: 20px;
+  flex: 1;
+}
+
+/* Card styling */
+.card {
+  border: none;
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+/* Card header */
+.card-header {
+  background-color: #007bff;
+  color: #fff;
+  font-weight: 600;
+  font-size: 1.25rem;
+  padding: 16px 24px;
+}
+
+/* Card body */
+.card-body {
+  padding: 24px;
+}
+
+/* Table styling */
+.table {
+  margin-bottom: 0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.table th,
+.table td {
+  vertical-align: middle;
+  text-align: center;
+}
+
+.table thead th {
+  background-color: #343a40;
+  color: #fff;
+}
+
+/* Alerts */
+.alert {
+  margin-bottom: 20px;
+  font-size: 0.95rem;
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+  .card-header,
+  .card-body {
+    padding: 16px;
+  }
+
+  .table th,
+  .table td {
+    font-size: 0.85rem;
+    padding: 8px;
+  }
+}

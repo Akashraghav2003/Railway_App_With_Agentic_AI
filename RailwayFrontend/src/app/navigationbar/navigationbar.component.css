@@ -1,0 +1,31 @@
+.navbar {
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  transition: background-color 0.3s ease;
+}
+
+.navbar a,
+.navbar .navbar-brand {
+  color: black !important; /* Ensures all text is white */
+}
+
+.navbar a:hover {
+  color: #ffd700 !important; /* Optional: gold on hover */
+}
+
+.navbar-brand img {
+  animation: logoPop 1s ease-out forwards;
+}
+
+@keyframes logoPop {
+  0% {
+    transform: scale(0.5) rotate(-20deg);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}

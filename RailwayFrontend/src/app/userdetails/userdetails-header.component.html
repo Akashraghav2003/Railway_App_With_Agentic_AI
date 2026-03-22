@@ -1,0 +1,27 @@
+<div class="card">
+  <div class="card-header bg-primary text-white">
+    <h5 class="mb-0">User Details</h5>
+  </div>
+  <div class="card-body">
+    <div *ngIf="loading" class="text-center">
+      <div class="spinner-border spinner-border-sm" role="status"></div>
+    </div>
+    
+    <div *ngIf="error" class="alert alert-danger alert-sm">
+      {{ error }}
+    </div>
+    
+    <div *ngIf="user && !loading" class="row">
+      <div class="col-md-6">
+        <p class="mb-1"><strong>ID:</strong> {{ user.userId }}</p>
+        <p class="mb-1"><strong>Name:</strong> {{ user.name }}</p>
+        <p class="mb-1"><strong>Username:</strong> {{ user.userName }}</p>
+      </div>
+      <div class="col-md-6">
+        <p class="mb-1"><strong>Email:</strong> {{ user.email }}</p>
+        <p class="mb-1"><strong>Role:</strong> {{ user.role }}</p>
+        <p class="mb-1"><strong>Phone:</strong> {{ user.phone }}</p>
+      </div>
+    </div>
+  </div>
+</div>
