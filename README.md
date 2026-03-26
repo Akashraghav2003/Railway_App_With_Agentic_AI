@@ -17,7 +17,7 @@ An intelligent conversational AI agent built with FastAPI and LangGraph that han
 
 **Core Technologies:**
 - **FastAPI**: High-performance async web framework
-- **LangChain & LangGraph**: AI orchestration and agentic workflow management
+- **LangChain & LangGraph**: AI orchestration and agentic workflow management.  
 - **Azure OpenAI / Google Gemini**: Large Language Models (configurable)
 - **MongoDB Atlas**: Document storage and vector database with Atlas Search
 - **Motor**: Async MongoDB driver
@@ -335,8 +335,6 @@ Journey B: ChatBot Messages → ChatBot (Python) → LangGraph Agents
 **Email:** akash.si8273@gmail.com
 
 -----
-khkh
-ol
 ## 📝 License
 
 [Specify your license here]
